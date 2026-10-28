@@ -1,0 +1,19 @@
+runners:
+  mavenRunner:
+    config-id: 2
+
+stages:
+  - name: MavenBuild
+    runner: mavenRunner
+    jobs:
+      - BuildJavaProject
+
+jobs:
+  BuildJavaProject:
+    steps:
+      - apt-get update
+      - apt-get install -y openjdk-17-jdk maven
+      - java -version
+      - mvn -version
+      - mvn clean package
+      - ls -lh target/
